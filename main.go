@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strconv"
 
 	"github.com/ddliu/go-httpclient"
 	"github.com/go-chi/chi"
@@ -52,7 +53,7 @@ func main() {
 	_ = godotenv.Load()
 
 	router := chi.NewRouter()
-	router.Get(`/{words:.*}`, func(rw http.ResponseWriter, r *http.Request) {
+	router.Get(`/words/{words:.*}`, func(rw http.ResponseWriter, r *http.Request) {
 		words := chi.URLParam(r, "words")
 
 		group := taskchain.TaskGroup{}
@@ -70,8 +71,7 @@ func main() {
 		})
 
 		if err := group.Exec(); err != nil {
-			fmt.Printf("%v\n", err)
-			http.Error(rw, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+			http.Error(rw, err.Error(), http.StatusBadRequest)
 			return
 		}
 
@@ -89,11 +89,45 @@ func main() {
 
 		b, err := json.Marshal(allThings)
 		if err != nil {
-			http.Error(rw, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+			http.Error(rw, err.Error(), http.StatusInternalServerError)
 			return
 		}
-		rw.Header().Set("Content-Type", "application/json; charset=utf8")
+		rw.Header().Set("Content-Type", "application/json; charset=utf-8")
 		_, _ = rw.Write(b)
 	})
+
+	router.Get("/sequence/{idx}", func(rw http.ResponseWriter, r *http.Request) {
+		_idx := chi.URLParam(r, "idx")
+		idx, _ := strconv.Atoi(_idx)
+
+		client := httpclient.NewHttpClient().WithHeader("X-Fony-Index", strconv.Itoa(idx))
+		endpoint := fmt.Sprintf("%s/%d", os.Getenv("SEQUENCE_SERVICE_URL"), idx)
+		resp, err := client.Get(endpoint)
+		if err != nil {
+			http.Error(rw, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		defer resp.Body.Close()
+		b, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			http.Error(rw, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		t := &Thingy{}
+		if err := json.Unmarshal(b, t); err != nil {
+			http.Error(rw, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		// this is redundant...to unserialize then serialize again , but it's just an example
+		b, err = json.Marshal(t)
+		if err != nil {
+			http.Error(rw, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		rw.Header().Set("Content-Type", "application/json; charset=utf-8")
+		_, _ = rw.Write(b)
+	})
+
 	_ = http.ListenAndServe("0.0.0.0:80", router)
 }

@@ -132,12 +132,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://things/this is a test",
+					"raw": "http://things/words/this is a test",
 					"protocol": "http",
 					"host": [
 						"things"
 					],
 					"path": [
+						"words",
 						"this is a test"
 					]
 				},
@@ -271,13 +272,270 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://things/of pure foolishness",
+					"raw": "http://things/words/of pure foolishness",
 					"protocol": "http",
 					"host": [
 						"things"
 					],
 					"path": [
+						"words",
 						"of pure foolishness"
+					]
+				},
+				"description": "a foolish request"
+			},
+			"response": []
+		},
+		{
+			"name": "index 0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f721930-c5f4-47c8-8057-f5b4547da1e4",
+						"exec": [
+							"const schema = {",
+							"  \"definitions\": {},",
+							"  \"$schema\": \"http://json-schema.org/draft-07/schema#\",",
+							"  \"$id\": \"http://example.com/root.json\",",
+							"  \"type\": \"object\",",
+							"  \"title\": \"The Root Schema\",",
+							"  \"required\": [",
+							"    \"value\"",
+							"  ],",
+							"  \"properties\": {",
+							"    \"value\": {",
+							"      \"$id\": \"#/properties/value\",",
+							"      \"type\": \"string\",",
+							"      \"title\": \"The Value Schema\",",
+							"      \"default\": \"\",",
+							"      \"examples\": [",
+							"        \"your index is -1\"",
+							"      ],",
+							"      \"pattern\": \"^(.*)$\"",
+							"    }",
+							"  }",
+							"};",
+							"",
+							"console.log(responseBody);",
+							"",
+							"const jsonData = JSON.parse(responseBody);",
+							"console.log(jsonData);",
+							"tests[\"Response schema is valid\"] = tv4.validate(jsonData, schema);",
+							"tests[\"VALUE\"] = jsonData.value === 'your index is 0';"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://things/sequence/0",
+					"protocol": "http",
+					"host": [
+						"things"
+					],
+					"path": [
+						"sequence",
+						"0"
+					]
+				},
+				"description": "a foolish request"
+			},
+			"response": []
+		},
+		{
+			"name": "index 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f721930-c5f4-47c8-8057-f5b4547da1e4",
+						"exec": [
+							"const schema = {",
+							"  \"definitions\": {},",
+							"  \"$schema\": \"http://json-schema.org/draft-07/schema#\",",
+							"  \"$id\": \"http://example.com/root.json\",",
+							"  \"type\": \"object\",",
+							"  \"title\": \"The Root Schema\",",
+							"  \"required\": [",
+							"    \"value\"",
+							"  ],",
+							"  \"properties\": {",
+							"    \"value\": {",
+							"      \"$id\": \"#/properties/value\",",
+							"      \"type\": \"string\",",
+							"      \"title\": \"The Value Schema\",",
+							"      \"default\": \"\",",
+							"      \"examples\": [",
+							"        \"your index is -1\"",
+							"      ],",
+							"      \"pattern\": \"^(.*)$\"",
+							"    }",
+							"  }",
+							"};",
+							"",
+							"console.log(responseBody);",
+							"",
+							"const jsonData = JSON.parse(responseBody);",
+							"console.log(jsonData);",
+							"tests[\"Response schema is valid\"] = tv4.validate(jsonData, schema);",
+							"tests[\"VALUE\"] = jsonData.value === 'your index is 1';"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://things/sequence/1",
+					"protocol": "http",
+					"host": [
+						"things"
+					],
+					"path": [
+						"sequence",
+						"1"
+					]
+				},
+				"description": "a foolish request"
+			},
+			"response": []
+		},
+		{
+			"name": "index 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f721930-c5f4-47c8-8057-f5b4547da1e4",
+						"exec": [
+							"const schema = {",
+							"  \"definitions\": {},",
+							"  \"$schema\": \"http://json-schema.org/draft-07/schema#\",",
+							"  \"$id\": \"http://example.com/root.json\",",
+							"  \"type\": \"object\",",
+							"  \"title\": \"The Root Schema\",",
+							"  \"required\": [",
+							"    \"value\"",
+							"  ],",
+							"  \"properties\": {",
+							"    \"value\": {",
+							"      \"$id\": \"#/properties/value\",",
+							"      \"type\": \"string\",",
+							"      \"title\": \"The Value Schema\",",
+							"      \"default\": \"\",",
+							"      \"examples\": [",
+							"        \"your index is -1\"",
+							"      ],",
+							"      \"pattern\": \"^(.*)$\"",
+							"    }",
+							"  }",
+							"};",
+							"",
+							"console.log(responseBody);",
+							"",
+							"const jsonData = JSON.parse(responseBody);",
+							"console.log(jsonData);",
+							"tests[\"Response schema is valid\"] = tv4.validate(jsonData, schema);",
+							"tests[\"VALUE\"] = jsonData.value === 'your index is 2';"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://things/sequence/2",
+					"protocol": "http",
+					"host": [
+						"things"
+					],
+					"path": [
+						"sequence",
+						"2"
+					]
+				},
+				"description": "a foolish request"
+			},
+			"response": []
+		},
+		{
+			"name": "index 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f721930-c5f4-47c8-8057-f5b4547da1e4",
+						"exec": [
+							"const schema = {",
+							"  \"definitions\": {},",
+							"  \"$schema\": \"http://json-schema.org/draft-07/schema#\",",
+							"  \"$id\": \"http://example.com/root.json\",",
+							"  \"type\": \"object\",",
+							"  \"title\": \"The Root Schema\",",
+							"  \"required\": [",
+							"    \"value\"",
+							"  ],",
+							"  \"properties\": {",
+							"    \"value\": {",
+							"      \"$id\": \"#/properties/value\",",
+							"      \"type\": \"string\",",
+							"      \"title\": \"The Value Schema\",",
+							"      \"default\": \"\",",
+							"      \"examples\": [",
+							"        \"your index is -1\"",
+							"      ],",
+							"      \"pattern\": \"^(.*)$\"",
+							"    }",
+							"  }",
+							"};",
+							"",
+							"console.log(responseBody);",
+							"",
+							"const jsonData = JSON.parse(responseBody);",
+							"console.log(jsonData);",
+							"tests[\"Response schema is valid\"] = tv4.validate(jsonData, schema);",
+							"tests[\"VALUE\"] = jsonData.value === 'your index is 3';"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://things/sequence/3",
+					"protocol": "http",
+					"host": [
+						"things"
+					],
+					"path": [
+						"sequence",
+						"3"
 					]
 				},
 				"description": "a foolish request"

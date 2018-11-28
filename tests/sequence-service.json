@@ -1,0 +1,31 @@
+{
+  "endpoints": [
+    {
+      "url": "/{idx}",
+      "method": "GET",
+      "run_sequential": true,
+      "responses": [
+        {
+          "payload": {
+            "value": "your index is 0"
+          }
+        },
+        {
+          "payload": {
+            "value": "your index is 1"
+          }
+        },
+        {
+          "payload": {
+            "value": "your index is 2"
+          }
+        },
+        {
+          "payload": {
+            "value": "your index is 3"
+          }
+        }
+      ]
+    }
+  ]
+}

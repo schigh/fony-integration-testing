@@ -15,7 +15,7 @@ func main() {
 		for i, j := 0, l-1; i < l/2; i, j = i+1, j-1 {
 			runes[i], runes[j] = runes[j], runes[i]
 		}
-		rw.Header().Set("Content-Type", "application/json; charset=utf8")
+		rw.Header().Set("Content-Type", "application/json; charset=utf-8")
 		_, _ = rw.Write([]byte(fmt.Sprintf(`{"value":"%s"}`, string(runes))))
 	})
 	_ = http.ListenAndServe("0.0.0.0:8884", router)

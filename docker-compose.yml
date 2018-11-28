@@ -11,6 +11,7 @@ services:
       - FOO_SERVICE_URL=http://foo_svc
       - MD5_SERVICE_URL=http://md5_svc
       - REVERSE_SERVICE_URL=http://reverse_svc
+      - SEQUENCE_SERVICE_URL=http://sequence_svc
     networks:
       - things_network
     depends_on:
@@ -18,6 +19,7 @@ services:
       - foo_svc
       - md5_svc
       - reverse_svc
+      - sequence_svc
 
   # caps service
   caps_svc:
@@ -56,6 +58,16 @@ services:
       - ./tests/reverse-service.json:/fony.json
     ports:
       - "8884:80"
+    networks:
+      - things_network
+
+  # sequence service
+  sequence_svc:
+    image: schigh/fony
+    volumes:
+      - ./tests/sequence-service.json:/fony.json
+    ports:
+      - "8885:80"
     networks:
       - things_network
 
