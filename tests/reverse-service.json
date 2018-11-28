@@ -1,0 +1,26 @@
+{
+  "endpoints": [
+    {
+      "url": "/this is a test",
+      "method": "GET",
+      "responses": [
+        {
+          "payload": {
+            "value": "tset a si siht"
+          }
+        }
+      ]
+    },
+    {
+      "url": "/of pure foolishness",
+      "method": "GET",
+      "responses": [
+        {
+          "payload": {
+            "value": "ssenhsiloof erup fo"
+          }
+        }
+      ]
+    }
+  ]
+}

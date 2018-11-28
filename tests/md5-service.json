@@ -1,0 +1,26 @@
+{
+  "endpoints": [
+    {
+      "url": "/this is a test",
+      "method": "GET",
+      "responses": [
+        {
+          "payload": {
+            "value": "54b0c58c7ce9f2a8b551351102ee0938"
+          }
+        }
+      ]
+    },
+    {
+      "url": "/of pure foolishness",
+      "method": "GET",
+      "responses": [
+        {
+          "payload": {
+            "value": "4d3271ccb9eec7f7585ca4f6ef16cbc7"
+          }
+        }
+      ]
+    }
+  ]
+}

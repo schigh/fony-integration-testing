@@ -1,0 +1,75 @@
+version: '3'
+services:
+  things:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8888:80"
+    environment:
+      - CAPS_SERVICE_URL=http://caps_svc
+      - FOO_SERVICE_URL=http://foo_svc
+      - MD5_SERVICE_URL=http://md5_svc
+      - REVERSE_SERVICE_URL=http://reverse_svc
+    networks:
+      - things_network
+    depends_on:
+      - caps_svc
+      - foo_svc
+      - md5_svc
+      - reverse_svc
+
+  # caps service
+  caps_svc:
+    image: schigh/fony
+    volumes:
+      - ./tests/caps-service.json:/fony.json
+    ports:
+      - "8881:80"
+    networks:
+      - things_network
+
+  # foo service
+  foo_svc:
+    image: schigh/fony
+    volumes:
+      - ./tests/foo-service.json:/fony.json
+    ports:
+      - "8882:80"
+    networks:
+      - things_network
+
+  # md5 service
+  md5_svc:
+    image: schigh/fony
+    volumes:
+      - ./tests/md5-service.json:/fony.json
+    ports:
+      - "8883:80"
+    networks:
+      - things_network
+
+  # reverse service
+  reverse_svc:
+    image: schigh/fony
+    volumes:
+      - ./tests/reverse-service.json:/fony.json
+    ports:
+      - "8884:80"
+    networks:
+      - things_network
+
+  # newman
+  newman:
+    image: postman/newman
+    networks:
+      - things_network
+    volumes:
+      - ./tests/collection.json:/etc/newman/collection.json
+    depends_on:
+      - things
+    command: run /etc/newman/collection.json --bail
+
+networks:
+  things_network:
+    external: false
