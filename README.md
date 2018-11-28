@@ -16,8 +16,8 @@ This repo represents a typical small microservice with a few (5) dependencies.  
 
 ```yaml
 - caps_svc      # capitalizes things
-- foo_svc		# replaces 'foo' with 'bar'
-- md5_svc		# generates md5 hash
+- foo_svc	# replaces 'foo' with 'bar'
+- md5_svc	# generates md5 hash
 - reverse_svc	# reverses a string
 - sequence_svc	# tells you your index (super helpful)
 ```
