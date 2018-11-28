@@ -8,22 +8,26 @@
         {
           "payload": {
             "value": "your index is 0"
-          }
+          },
+          "delay": 1000
         },
         {
           "payload": {
             "value": "your index is 1"
-          }
+          },
+          "delay": 1500
         },
         {
           "payload": {
             "value": "your index is 2"
-          }
+          },
+          "delay": 2000
         },
         {
           "payload": {
             "value": "your index is 3"
-          }
+          },
+          "delay": 2500
         }
       ]
     }
